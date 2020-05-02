@@ -15,12 +15,12 @@ export const getRestaurantsFailure = () => ({
   type: GET_RESTAURANTS_FAILURE
 })
 
-export function fetchRestaurants() {
+export function fetchRestaurants(searchTerm) {
   return async dispatch => {
     dispatch(getRestaurants())
 
     try {
-      const response = await fetch(`http://opentable.herokuapp.com/api/restaurants?city=toronto`)
+      const response = await fetch(`http://opentable.herokuapp.com/api/restaurants?city=${searchTerm}`)
       const data = await response.json()
 
       dispatch(getRestaurantsSuccess(data.restaurants))
