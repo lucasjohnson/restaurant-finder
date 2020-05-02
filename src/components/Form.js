@@ -56,10 +56,12 @@ class Form extends Component {
 
     return (
       <form className="form" onSubmit={this.handleSubmit}>
-        <input className="form-input" type="text" value={searchTerm} onChange={this.handleChange} placeholder="Find Food by city" />
+        <label className="form-label">City:
+          <input className="form-input" type="text" value={searchTerm} onChange={this.handleChange} placeholder="Find Food by city" />
+        </label>
         <input className="form-button" type="submit" value="Find" />
         {restaurants.length > 0 &&
-          <label>Refine results:
+          <label className="form-label">Refine results:
              <input className="form-input" type="text" placeholder="Refine your search" />
            </label>
         }
