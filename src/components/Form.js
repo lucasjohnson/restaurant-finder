@@ -11,7 +11,8 @@ class Form extends Component {
     this.state = {
       searchTerm: '',
       isMobile: Boolean,
-      formSubmitted: false
+      formSubmitted: false,
+      submittedTerm: ''
     }
   }
 
@@ -44,7 +45,8 @@ class Form extends Component {
     dispatch(fetchRestaurants(searchTerm))
 
     this.setState({
-      formSubmitted: true
+      formSubmitted: true,
+      submittedTerm: searchTerm
     })
   }
 
@@ -95,10 +97,15 @@ class Form extends Component {
   }
 
   render() {
+    const { submittedTerm, formSubmitted } = this.state
+
     return (
       <section className="LandingPage">
         <h1 className="title">Food App</h1>
         {this.renderForm()}
+        {formSubmitted &&
+          <h2 className="subtitle">{`Showing search results for '${submittedTerm}'`}</h2>
+        }
         <ul className="restaurant-items">
           {this.renderRestaurants()}
         </ul>
