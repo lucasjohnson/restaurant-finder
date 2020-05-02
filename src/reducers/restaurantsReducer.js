@@ -1,9 +1,9 @@
 import * as actions from '../actions/restaurantsActions'
 
 export const initialState = {
-  restaurants: [],
+  hasErrors: false,
   loading: false,
-  hasErrors: false
+  restaurants: []
 }
 
 export default function restaurantsReducer(state = initialState, action) {
