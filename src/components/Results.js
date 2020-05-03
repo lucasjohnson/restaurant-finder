@@ -4,7 +4,9 @@ import Restaurant from '../components/Restaurant'
 
 class Results extends Component {
   renderRestaurants = () => {
-    const { loading, hasErrors, restaurants, formSubmitted } = this.props
+    const { loading, hasErrors, restaurants, searchSubmitted } = this.props
+    console.log(this.props)
+
 
     if (loading) {
       return (
@@ -14,11 +16,7 @@ class Results extends Component {
       return (
         <p className="loading">There was an error processing your request, please try again</p>
       )
-    } else if (formSubmitted && restaurants.length === 0) {
-      return (
-        <p className="loading">No restaurants found matching your query, please try again</p>
-      )
-    } else {
+    } else if (restaurants.length > 0) {
       return (
         restaurants.map(restaurant =>
           <Restaurant
@@ -26,6 +24,10 @@ class Results extends Component {
             restaurant={restaurant}
           />
         )
+      )
+    } else if (searchSubmitted === true){
+      return (
+        <p className="loading">No restaurants found matching your query, please try again</p>
       )
     }
   }
@@ -43,7 +45,7 @@ const mapStateToProps = state => ({
   hasErrors: state.restaurants.hasErrors,
   loading: state.restaurants.loading,
   restaurants: state.restaurants.restaurants,
-  formSubmitted: state.restaurants.formSubmitted
+  searchSubmitted: state.restaurants.searchSubmitted
 })
 
 export default connect(mapStateToProps)(Results)

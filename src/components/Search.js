@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchRestaurants, refineRestaurants } from '../actions/restaurantsActions'
 
-class Form extends Component {
+class Search extends Component {
   constructor(props) {
     super(props)
 
@@ -20,18 +20,21 @@ class Form extends Component {
     });
   }
 
-  handleSearch = (event) => {
+  handleSearchSubmit = (event) => {
     event.preventDefault();
 
     const { dispatch } = this.props
     const { searchTerm } = this.state
 
-    dispatch(fetchRestaurants(searchTerm))
+    if (searchTerm) {
+      dispatch(fetchRestaurants(searchTerm))
 
-    this.setState({
-      formSubmitted: true,
-      submittedTerm: searchTerm
-    })
+      this.setState({
+        formSubmitted: true,
+        submittedTerm: searchTerm,
+        refineTerm: ''
+      })
+    }
   }
 
   handleRefineInput = (event) => {
@@ -40,7 +43,7 @@ class Form extends Component {
     });
   }
 
-  handleRefine = (event) => {
+  handleRefineSubmit = (event) => {
     event.preventDefault();
 
     const { dispatch, restaurants } = this.props
@@ -53,7 +56,7 @@ class Form extends Component {
     const { searchTerm } = this.state
 
     return (
-      <form className="form" onSubmit={this.handleSearch}>
+      <form className="form" onSubmit={this.handleSearchSubmit}>
         <label className="form-label">City:
           <input
             onChange={this.handleSearchInput}
@@ -67,21 +70,40 @@ class Form extends Component {
     )
   }
 
+  handleClear = () => {
+    const { dispatch } = this.props
+    const { searchTerm } = this.state
+
+    this.setState({
+      refineTerm: ''
+    })
+
+    dispatch(fetchRestaurants(searchTerm))
+  }
+
   renderRefineForm = () => {
     const { restaurants } = this.props
+    const { refineTerm } = this.state
 
     return (
-      restaurants.length > 0 &&
-        <form className="form" onSubmit={this.handleRefine}>
+      restaurants && restaurants.length > 0 &&
+        <form className="form" onSubmit={this.handleRefineSubmit}>
           <label className="form-label">Refine results:
             <input
               onChange={this.handleRefineInput}
+              value={refineTerm}
               className="form-input"
               type="text"
               placeholder="Refine your search"
             />
           </label>
           <input className="form-button" type="submit" value="Refine" />
+          <input
+            onClick={this.handleClear}
+            className="form-button"
+            type="submit"
+            value="Clear"
+          />
         </form>
     )
   }
@@ -106,4 +128,4 @@ const mapStateToProps = state => ({
   restaurants: state.restaurants.restaurants
 })
 
-export default connect(mapStateToProps)(Form)
+export default connect(mapStateToProps)(Search)

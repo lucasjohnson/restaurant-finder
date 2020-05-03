@@ -27,7 +27,6 @@ export function fetchRestaurants(searchTerm) {
     try {
       const response = await fetch(`http://opentable.herokuapp.com/api/restaurants?city=${searchTerm}`)
       const data = await response.json()
-
       dispatch(getRestaurantsSuccess(data.restaurants))
     } catch (error) {
       dispatch(getRestaurantsFailure())
@@ -56,7 +55,7 @@ export function refineRestaurants(restaurants, searchTerm) {
   return async dispatch => {
     dispatch(getRestaurants())
     try {
-      dispatch(getRestaurantsSuccess(results))
+      dispatch(refineRestaurantsResults(results))
     } catch (error) {
       dispatch(getRestaurantsFailure())
     }

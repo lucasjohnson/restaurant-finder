@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Forms from '../components/Forms'
+import Search from '../components/Search'
 import Results from '../components/Results'
 
 export default class LandingPage extends Component {
@@ -8,7 +8,7 @@ export default class LandingPage extends Component {
       <div className="App">
         <a className="skip-button" href="#mainContent">Skip to main content</a>
         <main id="mainContent">
-          <Forms />
+          <Search />
           <Results />
         </main>
       </div>
