@@ -1,4 +1,10 @@
-# Find Food
+# Find Restaurant
+
+Find restaurants in your city or others via the OpenTable API.
+
+[https://find-restaurant.netlify.app/](https://find-restaurant.netlify.app/)
+
+## Yarn Commands
 
 - `yarn start` Starts the development server.
 - `yarn build` Bundles the app into static files for production.
