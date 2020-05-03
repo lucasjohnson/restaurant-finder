@@ -6,8 +6,6 @@ class Results extends Component {
   renderRestaurants = () => {
     const { loading, hasErrors, restaurants, formSubmitted } = this.props
 
-    console.log(this.props)
-
     if (loading) {
       return (
         <p className="loading">Loading restaurants...</p>
@@ -18,7 +16,7 @@ class Results extends Component {
       )
     } else if (formSubmitted && restaurants.length === 0) {
       return (
-        <p className="loading">No restaurants found, please try again</p>
+        <p className="loading">No restaurants found matching your query, please try again</p>
       )
     } else {
       return (

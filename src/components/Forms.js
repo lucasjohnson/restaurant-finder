@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchRestaurants } from '../actions/restaurantsActions'
+import { fetchRestaurants, refineRestaurants } from '../actions/restaurantsActions'
 
 class Form extends Component {
   constructor(props) {
@@ -9,17 +9,18 @@ class Form extends Component {
     this.state = {
       searchTerm: '',
       formSubmitted: false,
-      submittedTerm: ''
+      submittedTerm: '',
+      refineTerm: ''
     }
   }
 
-  handleChange = (event) => {
+  handleSearchInput = (event) => {
     this.setState({
       searchTerm: event.target.value
     });
   }
 
-  handleSubmit = (event) => {
+  handleSearch = (event) => {
     event.preventDefault();
 
     const { dispatch } = this.props
@@ -33,32 +34,55 @@ class Form extends Component {
     })
   }
 
+  handleRefineInput = (event) => {
+    this.setState({
+      refineTerm: event.target.value
+    });
+  }
+
+  handleRefine = (event) => {
+    event.preventDefault();
+
+    const { dispatch, restaurants } = this.props
+    const { refineTerm } = this.state
+
+    dispatch(refineRestaurants(restaurants, refineTerm))
+  }
+
   renderForm = () => {
     const { searchTerm } = this.state
-    const { restaurants } = this.props
 
     return (
-      <form className="form" onSubmit={this.handleSubmit}>
+      <form className="form" onSubmit={this.handleSearch}>
         <label className="form-label">City:
           <input
-            onChange={this.handleChange}
+            onChange={this.handleSearchInput}
             className="form-input"
             type="text" value={searchTerm}
             placeholder="Find Food by city"
           />
         </label>
         <input className="form-button" type="submit" value="Find" />
-        {restaurants.length > 0 &&
-          <label className="form-label">Refine results:
-             <input
-               onChange={this.handleRefine}
-               className="form-input"
-               type="text"
-               placeholder="Refine your search"
-              />
-           </label>
-        }
       </form>
+    )
+  }
+
+  renderRefineForm = () => {
+    const { restaurants } = this.props
+
+    return (
+      restaurants.length > 0 &&
+        <form className="form" onSubmit={this.handleRefine}>
+          <label className="form-label">Refine results:
+            <input
+              onChange={this.handleRefineInput}
+              className="form-input"
+              type="text"
+              placeholder="Refine your search"
+            />
+          </label>
+          <input className="form-button" type="submit" value="Refine" />
+        </form>
     )
   }
 
@@ -69,6 +93,7 @@ class Form extends Component {
       <section className="LandingPage">
         <h1 className="title">Food App</h1>
         {this.renderForm()}
+        {this.renderRefineForm()}
         {formSubmitted &&
           <h2 className="subtitle">{`Showing search results for '${submittedTerm}'`}</h2>
         }

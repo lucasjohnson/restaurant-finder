@@ -27,7 +27,7 @@ export default class Restaurant extends Component {
   render() {
     const { restaurant } = this.props
     const { isMobile } = this.state
-    
+
     return (
       <li className="restaurant-item">
         <img className="restaurant-image" src={restaurant.image_url} alt={restaurant.name} />
