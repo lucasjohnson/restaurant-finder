@@ -1,5 +1,6 @@
 import React from 'react'
 import { render } from 'react-dom'
+import * as serviceWorker from './serviceWorker'
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
@@ -19,3 +20,5 @@ render (
   </Provider>,
   document.getElementById('root')
 )
+
+serviceWorker.register();
