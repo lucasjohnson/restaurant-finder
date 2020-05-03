@@ -1,33 +1,16 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchRestaurants } from '../actions/restaurantsActions'
-import { Restaurant } from '../components/Restautant'
-import { isMobile } from '../helpers/helpers'
 
 class Form extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       searchTerm: '',
-      isMobile: Boolean,
       formSubmitted: false,
       submittedTerm: ''
     }
-  }
-
-  setMobileState = () => {
-    this.setState({
-      isMobile: isMobile()
-    });
-  }
-
-  componentDidMount() {
-    window.addEventListener('resize', this.setMobileState);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.setMobileState);
   }
 
   handleChange = (event) => {
@@ -57,45 +40,26 @@ class Form extends Component {
     return (
       <form className="form" onSubmit={this.handleSubmit}>
         <label className="form-label">City:
-          <input className="form-input" type="text" value={searchTerm} onChange={this.handleChange} placeholder="Find Food by city" />
+          <input
+            onChange={this.handleChange}
+            className="form-input"
+            type="text" value={searchTerm}
+            placeholder="Find Food by city"
+          />
         </label>
         <input className="form-button" type="submit" value="Find" />
         {restaurants.length > 0 &&
           <label className="form-label">Refine results:
-             <input className="form-input" type="text" placeholder="Refine your search" />
+             <input
+               onChange={this.handleRefine}
+               className="form-input"
+               type="text"
+               placeholder="Refine your search"
+              />
            </label>
         }
       </form>
     )
-  }
-
-  renderRestaurants = () => {
-    const { loading, hasErrors, restaurants } = this.props;
-    const { isMobile, formSubmitted } = this.state
-
-    if (loading) {
-      return (
-        <p className="loading">Loading restaurants...</p>
-      )
-    } else if (hasErrors) {
-      return (
-        <p className="loading">There was an error processing your request, please try again</p>
-      )
-    } else if (formSubmitted && restaurants.length === 0) {
-      return (
-        <p className="loading">No restaurants found, please try again</p>
-      )
-    } else {
-      return (
-        restaurants.map(restaurant =>
-          <Restaurant
-            key={restaurant.id}
-            restaurant={restaurant}
-            isMobile={isMobile}
-          />
-        )
-      )
-    }
   }
 
   render() {
@@ -108,17 +72,12 @@ class Form extends Component {
         {formSubmitted &&
           <h2 className="subtitle">{`Showing search results for '${submittedTerm}'`}</h2>
         }
-        <ul className="restaurant-items">
-          {this.renderRestaurants()}
-        </ul>
       </section>
     )
   }
 }
 
 const mapStateToProps = state => ({
-  hasErrors: state.restaurants.hasErrors,
-  loading: state.restaurants.loading,
   restaurants: state.restaurants.restaurants
 })
 
