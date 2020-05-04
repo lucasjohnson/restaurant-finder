@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchRestaurants, refineRestaurants } from '../actions/restaurantsActions'
+import './Search.scss'
 
 class Search extends Component {
   constructor(props) {
@@ -57,15 +58,16 @@ class Search extends Component {
 
     return (
       <form className="form" onSubmit={this.handleSearchSubmit}>
-        <label className="form-label">City:
+        <label className="form-label">Find a restaurant in your city:</label>
+        <div className="form-wrapper">
           <input
             onChange={this.handleSearchInput}
             className="form-input"
             type="text" value={searchTerm}
-            placeholder="Find Food by city"
+            placeholder="Enter city name"
           />
-        </label>
         <input className="form-button" type="submit" value="Find" />
+        </div>
       </form>
     )
   }
@@ -88,22 +90,23 @@ class Search extends Component {
     return (
       restaurants.length > 0 || refineSubmitted ?
         <form className="form" onSubmit={this.handleRefineSubmit}>
-          <label className="form-label">Refine results:
-            <input
-              onChange={this.handleRefineInput}
-              value={refineTerm}
-              className="form-input"
-              type="text"
-              placeholder="Refine your search"
-            />
-          </label>
-          <input className="form-button" type="submit" value="Refine" />
+          <label className="form-label">Refine your results by name, area, or address:</label>
           <input
-            onClick={this.handleClear}
-            className="form-button"
-            type="submit"
-            value="Clear"
+            onChange={this.handleRefineInput}
+            value={refineTerm}
+            className="form-input"
+            type="text"
+            placeholder="Refine your search"
           />
+          <div className="form-button-wrapper">
+            <input className="form-button" type="submit" value="Refine" />
+            <input
+              onClick={this.handleClear}
+              className="form-button"
+              type="submit"
+              value="Reset"
+            />
+          </div>
         </form>
       : null
     )
@@ -113,13 +116,14 @@ class Search extends Component {
     const { submittedTerm, formSubmitted } = this.state
 
     return (
-      <section className="LandingPage">
-        <h1 className="title">Food App</h1>
-        {this.renderForm()}
-        {this.renderRefineForm()}
-        {formSubmitted &&
-          <h2 className="subtitle">{`Showing search results for '${submittedTerm}'`}</h2>
-        }
+      <section className="Search">
+        <div className="block-content">
+          {this.renderForm()}
+          {this.renderRefineForm()}
+          {formSubmitted &&
+            <h2 className="subtitle">{`Showing search results for '${submittedTerm}'`}</h2>
+          }
+        </div>
       </section>
     )
   }
