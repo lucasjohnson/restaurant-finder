@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Restaurant from '../components/Restaurant'
+import './Results.scss'
 
 class Results extends Component {
   renderRestaurants = () => {
     const { loading, hasErrors, restaurants, searchSubmitted } = this.props
-    
+
     if (loading) {
       return (
         <p className="loading">Loading restaurants...</p>
@@ -32,9 +33,13 @@ class Results extends Component {
 
   render() {
     return (
-      <ul className="restaurant-items">
-        {this.renderRestaurants()}
-      </ul>
+      <section className="Results">
+        <div className="block-content">
+          <ul className="restaurant-items">
+            {this.renderRestaurants()}
+          </ul>
+        </div>
+      </section>
     )
   }
 }

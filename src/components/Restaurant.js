@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { isMobile } from '../helpers/helpers'
+import './Restaurant.scss'
 
 export default class Restaurant extends Component {
   constructor(props) {
@@ -33,10 +34,9 @@ export default class Restaurant extends Component {
         <img className="restaurant-image" src={restaurant.image_url} alt={restaurant.name} />
         <h2 className="restaurant-title">
           {restaurant.name}
-          <span className="restaurant-price">{restaurant.price}</span>
         </h2>
         <p className="restaurant-address">{`${restaurant.address}, ${restaurant.postal_code}`}</p>
-        <span className="restaurant-phone">{restaurant.phone}</span>
+        <p className="restaurant-phone">{restaurant.phone}</p>
         <a
           href={isMobile ? restaurant.mobile_reserve_url : restaurant.reserve_url}
           className="restaurant-link"
