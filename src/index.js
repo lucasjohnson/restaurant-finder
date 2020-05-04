@@ -7,6 +7,14 @@ import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import App from './App'
 import rootReducer from './reducers'
+import { polyfillLoader } from 'polyfill-io-feature-detection'
+
+var Promise = require('es6-promise').Promise;
+
+polyfillLoader({
+  "features": "Promise,fetch",
+  "onCompleted": main
+});
 
 const store = createStore(
   rootReducer,
