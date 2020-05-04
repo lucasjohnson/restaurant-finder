@@ -7,6 +7,8 @@ import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import App from './App'
 import rootReducer from './reducers'
+import 'react-app-polyfill/ie9'
+import 'react-app-polyfill/stable'
 
 const store = createStore(
   rootReducer,
