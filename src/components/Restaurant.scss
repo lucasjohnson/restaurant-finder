@@ -17,6 +17,16 @@
     flex-basis: 15vw;
   }
 
+  .restaurant-price {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+
+    svg {
+      fill: #000000;
+    }
+  }
+
   .restaurant-image {
     margin-bottom: 1rem;
   }
