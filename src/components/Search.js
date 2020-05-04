@@ -58,9 +58,10 @@ class Search extends Component {
 
     return (
       <form className="form" onSubmit={this.handleSearchSubmit}>
-        <label className="form-label">Find a restaurant in your city:</label>
+        <label for="search" className="form-label">Find a restaurant in your city:</label>
         <div className="form-wrapper">
           <input
+            id="search"
             onChange={this.handleSearchInput}
             className="form-input"
             type="text" value={searchTerm}
@@ -90,8 +91,9 @@ class Search extends Component {
     return (
       restaurants.length > 0 || refineSubmitted ?
         <form className="form" onSubmit={this.handleRefineSubmit}>
-          <label className="form-label">Refine your results by name, area, or address:</label>
+          <label for="refine" className="form-label">Refine your results by name, area, or address:</label>
           <input
+            id="refine"
             onChange={this.handleRefineInput}
             value={refineTerm}
             className="form-input"
