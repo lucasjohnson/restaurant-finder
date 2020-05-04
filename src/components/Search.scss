@@ -30,6 +30,13 @@
     background-color: #61DAfB;
     border-radius: 0.2rem;
     border: none;
+    transition: all ease 300ms;
+    opacity: 1;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.8;
+    }
   }
 
   .form-button-wrapper {

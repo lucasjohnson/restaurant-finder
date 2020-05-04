@@ -46,5 +46,12 @@
     border: none;
     position: absolute;
     bottom: 0;
+    transition: all ease 300ms;
+    opacity: 1;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.8;
+    }
   }
 }
