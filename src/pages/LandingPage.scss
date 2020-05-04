@@ -1,0 +1,65 @@
+.LandingPage {
+  position: relative;
+
+  .skip-button {
+    font-weight: 800;
+    font-size: 1.2rem;
+    line-height: 1;
+    letter-spacing: 0.1rem;
+    text-transform: uppercase;
+    text-align: center;
+    color: #fff;
+    padding: 1.9rem 3rem;
+    background-color: #000;
+    border-radius: 0.2rem;
+    position: absolute;
+    top: -6rem;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: all 0.2s ease;
+    opacity: 0;
+  }
+
+  .skip-button:focus,
+  .skip-button:active {
+    top: 0;
+    opacity: 1;
+  }
+
+  .Header {
+    padding: 2rem 0;
+    background-color: #1B1B2F;
+  }
+
+  .logo {
+    height: 4rem;
+    pointer-events: none;
+    display: inline-block;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .logo {
+      animation: logo-spin infinite 20s linear;
+    }
+  }
+
+  @keyframes logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .site-title {
+    font-size: 4rem;
+    display: inline-block;
+    margin-bottom: 1rem;
+  }
+
+  .site-slug {
+    font-size: 1.4rem;
+    line-height: 1.5;
+  }
+}
