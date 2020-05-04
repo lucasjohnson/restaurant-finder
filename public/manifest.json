@@ -1,7 +1,7 @@
 {
-  "short_name": "Find Restaurant App",
-  "name": "Find restaurants in your city or others",
-  "description": "Find restaurants in your city or others via the OpenTable API",
+  "short_name": "Restaurant Finder",
+  "name": "Find restaurants in your city",
+  "description": "Find restaurants in your city via the OpenTable API",
   "icons": [
     {
       "src": "favicon.ico",
@@ -21,6 +21,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#282C34",
+  "background_color": "#FFFFFF"
 }

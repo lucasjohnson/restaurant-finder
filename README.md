@@ -1,6 +1,6 @@
-# Find Restaurant
+# Restaurant Finder
 
-Find restaurants in your city or others via the OpenTable API.
+Find restaurants in your city via the OpenTable API.
 
 [https://find-restaurant.netlify.app/](https://find-restaurant.netlify.app/)
 
