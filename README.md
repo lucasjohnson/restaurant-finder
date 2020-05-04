@@ -19,9 +19,9 @@ __How long did you spend on the coding assignment? What would you add to your so
 
 __What was the most useful feature that was added to the latest version of your chosen language? Please include a snippet of code that shows how you've used it.__
 I used my favorites throughout this app, such as:
-- Array helper functions `.map` and `.forEach` because they reduce the amount of logic you need to write making your code more readable.
+- Array helper functions `.map` ([here](src/components/Results.js)) and `.forEach` ([here](src/actions/restaurantsActions.js)) because they reduce the amount of logic you need to write making your code more readable.
 - The `const` and `let` variable keywords because of their block scoping.
-- Template stings for inline expressions i.e toggling of classes depending on state with a Ternary operator.
+- Template stings for inline expressions i.e toggling of classes depending on state with a Ternary operator ([here](src/components/Restaurant.js)).
 
 __How would you track down a performance issue in production? Have you ever had to do this?__
 With Chrome Dev Tools: Sources, Network, Performance, and Audit (Lighthouse) tabs.
