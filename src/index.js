@@ -8,8 +8,7 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import App from './App'
 import rootReducer from './reducers'
 import { polyfillLoader } from 'polyfill-io-feature-detection'
-
-var Promise = require('es6-promise').Promise;
+import { polyfill } from 'es6-promise'; polyfill()
 
 polyfillLoader({
   "features": "Promise,fetch",
@@ -21,11 +20,13 @@ const store = createStore(
   composeWithDevTools(applyMiddleware(thunk))
 )
 
-render (
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById('root')
-)
+function main() {
+  render (
+    <Provider store={store}>
+      <App />
+    </Provider>,
+    document.getElementById('root')
+  )
+}
 
 serviceWorker.register();
