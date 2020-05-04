@@ -5,9 +5,7 @@ import Restaurant from '../components/Restaurant'
 class Results extends Component {
   renderRestaurants = () => {
     const { loading, hasErrors, restaurants, searchSubmitted } = this.props
-    console.log(this.props)
-
-
+    
     if (loading) {
       return (
         <p className="loading">Loading restaurants...</p>
@@ -45,7 +43,8 @@ const mapStateToProps = state => ({
   hasErrors: state.restaurants.hasErrors,
   loading: state.restaurants.loading,
   restaurants: state.restaurants.restaurants,
-  searchSubmitted: state.restaurants.searchSubmitted
+  searchSubmitted: state.restaurants.searchSubmitted,
+  refineSubmitted: state.restaurants.refineSubmitted
 })
 
 export default connect(mapStateToProps)(Results)

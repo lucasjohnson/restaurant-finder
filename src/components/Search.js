@@ -82,11 +82,11 @@ class Search extends Component {
   }
 
   renderRefineForm = () => {
-    const { restaurants } = this.props
+    const { restaurants, refineSubmitted } = this.props
     const { refineTerm } = this.state
 
     return (
-      restaurants && restaurants.length > 0 &&
+      restaurants.length > 0 || refineSubmitted ?
         <form className="form" onSubmit={this.handleRefineSubmit}>
           <label className="form-label">Refine results:
             <input
@@ -105,6 +105,7 @@ class Search extends Component {
             value="Clear"
           />
         </form>
+      : null
     )
   }
 
@@ -125,7 +126,8 @@ class Search extends Component {
 }
 
 const mapStateToProps = state => ({
-  restaurants: state.restaurants.restaurants
+  restaurants: state.restaurants.restaurants,
+  refineSubmitted: state.restaurants.refineSubmitted
 })
 
 export default connect(mapStateToProps)(Search)
