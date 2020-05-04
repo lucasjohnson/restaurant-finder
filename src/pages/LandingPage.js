@@ -12,7 +12,7 @@ export default class LandingPage extends Component {
         <main className="main-content" id="mainContent">
           <section className="Header">
             <div className="block-content">
-              <img src={logo} className="logo" alt="logo" />
+              <img src={logo} className="logo" alt="Webstie logo" />
               <h1 className="site-title">Restaurnat Finder</h1>
               <p className="site-slug">Find restaurants in your city via the OpenTable API</p>
             </div>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Restaurant from '../components/Restaurant'
+import logo from '../logo.svg';
 import './Results.scss'
 
 class Results extends Component {
@@ -9,11 +10,14 @@ class Results extends Component {
 
     if (loading) {
       return (
-        <p className="loading">Loading restaurants...</p>
+        <div>
+          <img src={logo} className="logo" alt="Loading icon" />
+          <p className="loading-message">Loading restaurants...</p>
+        </div>
       )
     } else if (hasErrors) {
       return (
-        <p className="loading">There was an error processing your request, please try again</p>
+        <p className="results-message">There was an error processing your request, please try again</p>
       )
     } else if (restaurants.length > 0) {
       return (
@@ -26,7 +30,7 @@ class Results extends Component {
       )
     } else if (searchSubmitted === true){
       return (
-        <p className="loading">No restaurants found matching your query, please try again</p>
+        <p className="results-message">No restaurants found matching your query, please try again</p>
       )
     }
   }

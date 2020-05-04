@@ -96,7 +96,7 @@ class Search extends Component {
             value={refineTerm}
             className="form-input"
             type="text"
-            placeholder="Refine your search"
+            placeholder="Name, area, address"
           />
           <div className="form-button-wrapper">
             <input className="form-button" type="submit" value="Refine" />
@@ -121,7 +121,7 @@ class Search extends Component {
           {this.renderForm()}
           {this.renderRefineForm()}
           {formSubmitted &&
-            <h2 className="subtitle">{`Showing search results for '${submittedTerm}'`}</h2>
+            <h2 className="results-message">{`Showing search results for '${submittedTerm}'`}</h2>
           }
         </div>
       </section>
