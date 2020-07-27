@@ -2,7 +2,7 @@
 
 Find restaurants in your city via the OpenTable API.
 
-[find-restaurant.netlify.app](https://find-restaurant.netlify.app/)
+[findfood.vercel.app](findfood.vercel.app)
 
 ## Yarn Commands
 
