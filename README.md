@@ -1,4 +1,4 @@
-# Restaurant Finder
+# Find Food App
 
 Find restaurants in your city via the OpenTable API.
 
